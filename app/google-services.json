@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "467410446236",
+    "project_id": "sellme-4a832",
+    "storage_bucket": "sellme-4a832.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467410446236:android:02e920ca4475869a4c0a59",
+        "android_client_info": {
+          "package_name": "com.tech4dev.sellme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467410446236-q14gkm88ghnqa7lb6pqfsusgupact0kn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBupnC_V1VEmEGBFbyivTeuyPIyp_t1lGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467410446236-q14gkm88ghnqa7lb6pqfsusgupact0kn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
