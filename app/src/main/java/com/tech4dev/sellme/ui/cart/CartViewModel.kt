@@ -11,4 +11,14 @@ class CartViewModel : ViewModel() {
     fun getProducts(): List<Product> {
         return CartRepository.getSelectedProduct().keys.toList()
     }
+    fun increaseQuantity(){
+
+    }
+    fun decreaseQuantity(){
+
+
+    }
+    fun deleteFromCart(){
+
+    }
 }
