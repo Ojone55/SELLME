@@ -8,46 +8,43 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.button.MaterialButton
 import com.tech4dev.sellme.R
 import com.tech4dev.sellme.data.models.Product
 
-class CartAdapter(val context: Context, val listOfSelectedProducts: List<Product>):RecyclerView.Adapter<CartViewHolder>() {
+class CartAdapter(val context: Context, val cartViewModel: CartViewModel): RecyclerView.Adapter<CartViewHolder>()  {
+     val listOfSelectedProducts: List<Product> =cartViewModel.getProducts()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
-       val itemView=LayoutInflater.from(context).inflate(R.layout.layout_cart,parent,false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.layout_cart, parent, false)
         return CartViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
-        var product : Product =listOfSelectedProducts[position]
+        val product: Product = listOfSelectedProducts[position]
 
         //show name
-        holder.productName.text =product.name
+        holder.productName.text = product.name
 
         //show price
-        Glide. with(context)
-            .load(product.image)
-            .into(holder.image)
+        holder.price.text = "$${product.price}"
 
+        //show image
+        Glide.with(context).load(product.image).into(holder.image)
 
+        //show quantity
+        holder.quantity.text = cartViewModel.getQuantity(product).toString()
     }
 
     override fun getItemCount(): Int = listOfSelectedProducts.size
-
-
-
 }
-class CartViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
-    val image:ImageView=itemView.findViewById(R.id.image)
-    val productName: TextView =itemView.findViewById(R.id.product_name)
-    val  price:TextView=itemView.findViewById(R.id.price)
-    val  quantity:TextView=itemView.findViewById(R.id.quantity)
-    val  increasQty:TextView=itemView.findViewById(R.id.increase_quantity)
-    val  decreaseQty:TextView=itemView.findViewById(R.id.decrease_quantity)
-    val  delete:TextView=itemView.findViewById(R.id.delete)
 
-
-
-
-
-
+class CartViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    val image: ImageView = itemView.findViewById(R.id.image)
+    val productName: TextView = itemView.findViewById(R.id.product_name)
+    val price: TextView = itemView.findViewById(R.id.price)
+    val quantity: TextView = itemView.findViewById(R.id.quantity)
+    val decreaseQty: MaterialButton = itemView.findViewById(R.id.decrease_quantity)
+    val increaseQty: MaterialButton = itemView.findViewById(R.id.increase_quantity)
+    val deleteBtn: MaterialButton = itemView.findViewById(R.id.delete)
 }
