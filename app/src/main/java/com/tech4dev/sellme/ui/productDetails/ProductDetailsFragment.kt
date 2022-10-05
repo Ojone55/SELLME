@@ -40,7 +40,7 @@ class ProductDetailsFragment(val product: Product) : BottomSheetDialogFragment()
             //get the product id
             val id:String=product.uid?:""
             //save the product id to sharedpreference
-            productDetailsViewModel.saveToCart(id)
+            productDetailsViewModel.saveToCart(product)
             //alert user that it has been added to cart
             Toast.makeText(requireContext(),"Save To Cart",Toast.LENGTH_LONG).show()
             binding.addToCart.text = "Remove From Cart"

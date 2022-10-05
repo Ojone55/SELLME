@@ -1,13 +1,14 @@
 package com.tech4dev.sellme.ui.cart
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CartViewModel : ViewModel() {
+import com.tech4dev.sellme.data.models.Product
+import com.tech4dev.sellme.data.repository.CartRepository
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is cart Fragment"
+class CartViewModel : ViewModel() {
+    // val selectedProducts
+
+    fun getProducts(): List<Product> {
+        return CartRepository.getSelectedProduct().keys.toList()
     }
-    val text: LiveData<String> = _text
 }
