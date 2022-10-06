@@ -26,4 +26,11 @@ class CartViewModel : ViewModel() {
     fun removeFromCart(product: Product){
         CartRepository.removeFromCart(product)
     }
+    fun getCartLiveData():MutableLiveData<MutableMap<Product,Int>>{
+        return CartRepository.getCartLiveData()
+    }
+    fun getPrice():Double{
+        return CartRepository.getPrice()
+    }
+
 }

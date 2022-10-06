@@ -40,6 +40,8 @@
         android:layout_height="48dp"
         android:text=" + "
         app:cornerRadius="360dp"
+        android:textColor="@color/teal_200"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/product_name" />
     <TextView
@@ -56,6 +58,9 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:text=" - "
+
+        android:textColor="@color/teal_200"
+        android:backgroundTint="@color/white"
         app:cornerRadius="360dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/quantity" />
@@ -64,6 +69,7 @@
         android:id="@+id/delete"
         android:layout_width="48dp"
         android:layout_height="48dp"
+
         android:background="@drawable/ic_baseline_delete_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -16,10 +16,10 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/checkout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="Checkout"
         android:backgroundTint="@color/purple_200"
-        android:textColor="@color/pink"
+        android:textColor="@color/teal"
         android:layout_marginBottom="55dp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
