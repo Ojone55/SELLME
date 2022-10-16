@@ -1,6 +1,7 @@
 package com.tech4dev.sellme.ui.cart
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -36,10 +37,13 @@ class CartFragment : Fragment() {
             initializeRecyclerView()
             showPriceOnCheckoutButton()
         }
+
+        //set listener to checkout button
         binding. checkout.setOnClickListener {
+            val i = Intent(requireActivity(), CheckoutActivity::class.java)
+            requireActivity().startActivity(i)
 
         }
-
 
     }
 

@@ -44,6 +44,10 @@ class ProductDetailsFragment(val product: Product) : BottomSheetDialogFragment()
             //alert user that it has been added to cart
             Toast.makeText(requireContext(),"Save To Cart",Toast.LENGTH_LONG).show()
 
+            //Close Bottom Sheet
+            this.dismiss()
+
+
         }
     }
 }

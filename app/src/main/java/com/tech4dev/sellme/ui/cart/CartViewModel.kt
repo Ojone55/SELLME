@@ -33,4 +33,8 @@ class CartViewModel : ViewModel() {
         return CartRepository.getPrice()
     }
 
+    fun clearCart() {
+        TODO("Not yet implemented")
+    }
+
 }

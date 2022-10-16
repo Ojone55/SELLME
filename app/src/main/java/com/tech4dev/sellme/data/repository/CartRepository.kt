@@ -38,8 +38,9 @@ object CartRepository {
     fun getPrice(): Double{
         var price: Double = 0.0
         for(items in selectedProducts.keys){
-            val totalPrice= items.price * selectedProducts[items]!!
-            price =price + totalPrice
+            val quantity: Int= selectedProducts[items]!!
+            val totalPrice= items.price * quantity
+            price += totalPrice
         }
         return price
     }
@@ -53,5 +54,10 @@ object CartRepository {
     }
     private fun notifyValueChange() {
         cartLiveData.value = selectedProducts
+    }
+    fun clearCart(){
+        selectedProducts.clear()
+
+        notifyValueChange()
     }
 }
