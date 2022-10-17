@@ -10,7 +10,7 @@
         android:id="@+id/select_as_favourite"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_baseline_favourite_border_24"
+        android:src="@drawable/ic_baseline_favorite_border_24"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

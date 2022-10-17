@@ -6,27 +6,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import com.tech4dev.sellme.R
+import com.tech4dev.sellme.data.models.Product
+import com.tech4dev.sellme.databinding.FragmentFavouriteBinding
+import com.tech4dev.sellme.ui.home.ProductsAdapter
 
-@Suppress("DEPRECATION", "OVERRIDE_DEPRECATION")
 class FavouriteFragment : Fragment() {
-
-    companion object {
-    }
-
+    private lateinit var fragmentFavouriteBinding: FragmentFavouriteBinding
     private lateinit var viewModel: FavouriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_favourite, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(/* savedInstanceState = */ savedInstanceState)
         viewModel = ViewModelProvider(this).get(FavouriteViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        fragmentFavouriteBinding = FragmentFavouriteBinding.inflate(inflater, container, false)
+        return fragmentFavouriteBinding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.getAllFavouriteProducts().observe(viewLifecycleOwner){listOfUids ->
+            Toast.makeText(requireContext(),"list size"+ listOfUids.size, Toast.LENGTH_LONG).show()
+          viewModel.getProductFromUids(listOfUids).observe(viewLifecycleOwner){listOfProducts->
+
+              fragmentFavouriteBinding.listOfFavourites.adapter=ProductsAdapter(requireContext(),listOfProducts,childFragmentManager)
+              fragmentFavouriteBinding.listOfFavourites.layoutManager=GridLayoutManager(requireContext(),2)
+          }
+        }
+    }
 }

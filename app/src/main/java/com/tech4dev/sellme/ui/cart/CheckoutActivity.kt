@@ -1,15 +1,14 @@
 package com.tech4dev.sellme.ui.cart
 
-import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.tech4dev.sellme.R
 import com.tech4dev.sellme.databinding.ActivityCheckoutBinding
-import java.util.*
 
 class CheckoutActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckoutBinding
@@ -52,7 +51,6 @@ class CheckoutActivity : AppCompatActivity() {
             return false
         }
 
-
         return true
     }
 
@@ -61,7 +59,8 @@ class CheckoutActivity : AppCompatActivity() {
             .setView(R.layout.layout_payment_successful)
             .setNegativeButton("OK", {dialog, which ->
                 this@CheckoutActivity.finish()
-            })
+            }
+            )
             .show()
     }
 
