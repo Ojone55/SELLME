@@ -28,13 +28,26 @@ class FavouriteFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.getAllFavouriteProducts().observe(viewLifecycleOwner){listOfUids ->
-            Toast.makeText(requireContext(),"list size"+ listOfUids.size, Toast.LENGTH_LONG).show()
-          viewModel.getProductFromUids(listOfUids).observe(viewLifecycleOwner){listOfProducts->
+        viewModel.getAllFavouriteProducts().observe(viewLifecycleOwner) { listOfUids ->
 
-              fragmentFavouriteBinding.listOfFavourites.adapter=ProductsAdapter(requireContext(),listOfProducts,childFragmentManager)
-              fragmentFavouriteBinding.listOfFavourites.layoutManager=GridLayoutManager(requireContext(),2)
-          }
+            viewModel.getProductFromUids(listOfUids).observe(viewLifecycleOwner) { listOfProducts ->
+                if (listOfProducts.size>0) {
+                    fragmentFavouriteBinding.listOfFavourites.visibility = View.GONE
+                    fragmentFavouriteBinding.notFound.visibility = View.VISIBLE
+
+                    fragmentFavouriteBinding.listOfFavourites.adapter =
+                        ProductsAdapter(requireContext(), listOfProducts, childFragmentManager)
+
+                    fragmentFavouriteBinding.listOfFavourites.layoutManager =
+                        GridLayoutManager(requireContext(), 2)
+                } else {
+                    //Favourite is empty message
+                    fragmentFavouriteBinding.listOfFavourites.visibility = View.GONE
+                    fragmentFavouriteBinding.notFound.visibility = View.VISIBLE
+                }
+            }
+
         }
+
     }
 }

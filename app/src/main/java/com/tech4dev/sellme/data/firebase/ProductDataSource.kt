@@ -15,6 +15,7 @@ class ProductDatasource {
     //Get reference to firestore database
     private val db = Firebase.firestore
 
+
     //Create function that will fetch the producta from the database
 
 
@@ -35,11 +36,13 @@ class ProductDatasource {
     }
     //This will take a list of uids
     // and return livedata of products which can be observed
-    fun getProductFromUids(productUid:List<String>):MutableLiveData<List<Product>>{
-        val productLivedata = MutableLiveData<List<Product>>()
+    fun getProductFromUids(productUids:List<String>):MutableLiveData<List<Product>>{
+
+        val productLivedata = MutableLiveData<List<Product>>(listOf())
+        if(productUids.isEmpty()) return productLivedata
 
         db.collection("products")
-            .whereIn("uid",productUid)
+            .whereIn("uid",productUids)
             .get()
 
             .addOnSuccessListener { documents ->
