@@ -52,6 +52,7 @@ class CheckoutActivity : AppCompatActivity() {
             return false
         }
 
+
         return true
     }
 
