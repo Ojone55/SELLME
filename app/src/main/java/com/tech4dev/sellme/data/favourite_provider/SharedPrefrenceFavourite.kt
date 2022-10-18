@@ -12,22 +12,22 @@ class SharedPreferenceFavourite(context: Context) : FavouriteProvider {
     //Create an instance of a live data
     private val livedata = MutableLiveData<List<String>>()
 
-    override fun addFavourite(productId: String) {
-        editor.putString(productId,productId)
+    override fun addFavourite(productUid: String) {
+        editor.putString(productUid,productUid)
         editor.commit()
 
         notifyObservers()
     }
 
-     override fun removeFavourite(productId: String) {
-        editor.remove(productId)
+     override fun removeFavourite(productUid: String) {
+        editor.remove(productUid)
         editor.commit()
 
         notifyObservers()
     }
 
-    override fun isFavourite(productId: String): Boolean {
-        val item: String? = favouriteStorage.getString(productId, "")
+    override fun isFavourite(productUid: String): Boolean {
+        val item: String? = favouriteStorage.getString(productUid, "")
         if(item.isNullOrEmpty()){
             return false
         }
