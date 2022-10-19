@@ -2,6 +2,7 @@ package com.tech4dev.sellme.ui.cart
 
 
 import android.R
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
+import com.tech4dev.sellme.data.models.Notification
 import com.tech4dev.sellme.databinding.ActivityCheckoutBinding
 
 class CheckoutActivity : AppCompatActivity() {
@@ -90,7 +92,9 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
     private fun saveNotification(message: String) {
+        val notification = Notification(System.currentTimeMillis(),message)
 
+        cartViewModel.saveNotification(notification)
     }
 
     private fun inputIsValid(): Boolean {
@@ -113,7 +117,9 @@ class CheckoutActivity : AppCompatActivity() {
             .setView(com.tech4dev.sellme.R.layout.layout_payment_successful)
             .setPositiveButton("OK", {dialog, which ->
                 this@CheckoutActivity.finish()
-            })
+            }
+
+            )
             .setCancelable(false)
             .show()
     }

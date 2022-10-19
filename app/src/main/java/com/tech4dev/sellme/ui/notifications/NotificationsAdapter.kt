@@ -4,7 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.tech4dev.sellme.R
 import com.tech4dev.sellme.data.models.Notification
@@ -26,6 +29,31 @@ class NotificationsAdapter(val context: Context, val listOfNotifications: Mutabl
 
         //show message
         holder.message.text = notification.message
+
+        //setup popup menu
+        holder.menuBtn.setOnClickListener(){
+            showPopupMenu(holder,notification)
+
+        }
+
+
+    }
+
+    private fun showPopupMenu(holder: NotificationViewHolder, notification: Notification) {
+        val popupMenu = PopupMenu(context, holder.menuBtn)
+        popupMenu.inflate(R.menu.notification_menu)
+        popupMenu.show()
+        popupMenu.setOnMenuItemClickListener {
+
+            when (it.itemId) {
+                R.id.delete -> {
+                    Toast.makeText(context, "Delete Clicked", Toast.LENGTH_LONG).show()
+                    return@setOnMenuItemClickListener true
+                }
+
+            }
+            false
+        }
     }
 
     override fun getItemCount(): Int = listOfNotifications.size
@@ -34,4 +62,5 @@ class NotificationsAdapter(val context: Context, val listOfNotifications: Mutabl
 class NotificationViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
     val date: TextView = itemView.findViewById(R.id.date)
     val message: TextView = itemView.findViewById(R.id.message)
+    val menuBtn:ImageButton = itemView.findViewById(R.id.image_menu)
 }

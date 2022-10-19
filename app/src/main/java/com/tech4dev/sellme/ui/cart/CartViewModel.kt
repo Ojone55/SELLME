@@ -1,11 +1,16 @@
 package com.tech4dev.sellme.ui.cart
-import androidx.lifecycle.LiveData
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.tech4dev.sellme.data.models.Notification
 import com.tech4dev.sellme.data.models.Product
 import com.tech4dev.sellme.data.repository.CartRepository
+import com.tech4dev.sellme.data.repository.NotificationRepository
 
-class CartViewModel : ViewModel() {
+class CartViewModel(application: Application) : AndroidViewModel(application) {
+
+
+    private  val notificationRepo = NotificationRepository(application)
 
     fun getProducts(): List<Product>{
         return CartRepository.getSelectedProducts().keys.toList()
@@ -34,7 +39,12 @@ class CartViewModel : ViewModel() {
     }
 
     fun clearCart() {
-        TODO("Not yet implemented")
+       CartRepository.clearCart()
+    }
+
+    fun saveNotification(notification: Notification) {
+        notificationRepo.saveNotification(notification)
+
     }
 
 }

@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tech4dev.sellme.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {
@@ -29,7 +31,12 @@ class NotificationsFragment : Fragment() {
     }
 
    override fun onViewCreated(view: View,savedInstanceState: Bundle?){
-       binding.listNotification.layoutManager=LinearLayoutManager(requireContext())
+       val listOfNotification =notificationsViewModel.getAllNotifications()
+       binding.listOfNotification.layoutManager=LinearLayoutManager(requireContext())
+       binding.listOfNotification.adapter=NotificationsAdapter(requireContext(), listOfNotification)
+      val dividerItemDecoration= DividerItemDecoration(requireContext(),RecyclerView.VERTICAL)
+       binding.listOfNotification.addItemDecoration(dividerItemDecoration)
+
    }
 
 }

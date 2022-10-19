@@ -15,4 +15,7 @@ class NotificationRepository(context: Context) {
     fun deleteNotifiction(notification: Notification){
         notificationProvider.deleteNotification(notification)
     }
+    fun saveNotification(notification: Notification){
+        notificationProvider.saveNotification(notification)
+    }
 }

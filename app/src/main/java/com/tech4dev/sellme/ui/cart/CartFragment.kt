@@ -1,18 +1,18 @@
 package com.tech4dev.sellme.ui.cart
 
-import android.content.Context
+
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tech4dev.sellme.data.models.Product
-
 import com.tech4dev.sellme.databinding.FragmentCartBinding
 
 class CartFragment : Fragment() {
@@ -33,23 +33,26 @@ class CartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         cartViewModel.getCartLiveData().observe(viewLifecycleOwner){
-
             initializeRecyclerView()
             showPriceOnCheckoutButton()
+
+            if(cartViewModel.getPrice() <= 0.0){
+                binding.checkout.isEnabled = false
+            }else{
+                binding.checkout.isEnabled = true
+            }
         }
 
         //set listener to checkout button
-        binding. checkout.setOnClickListener {
+        binding.checkout.setOnClickListener{
             val i = Intent(requireActivity(), CheckoutActivity::class.java)
-            requireActivity().startActivity(i)
-
+            requireActivity().startActivity(i);
         }
-
     }
 
     private fun showPriceOnCheckoutButton() {
-        var price=cartViewModel.getPrice()
-        binding.checkout.text="Checkout ($$price)"
+        var price = cartViewModel.getPrice()
+        binding.checkout.text = "Checkout ($$price)"
     }
 
     private fun initializeRecyclerView(){
@@ -60,3 +63,4 @@ class CartFragment : Fragment() {
         binding.itemsInCart.addItemDecoration(dividerItemDecoration)
     }
 }
+
